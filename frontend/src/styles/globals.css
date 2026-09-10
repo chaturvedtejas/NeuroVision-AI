@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nv-bg: #030712;
+    --nv-surface: #0d1117;
+    --nv-card: #111827;
+    --nv-border: #1f2937;
+    --nv-accent: #00ff88;
+    --nv-cyan: #00d4ff;
+    --nv-purple: #7c3aed;
+    --nv-red: #ff3366;
+    --nv-amber: #f59e0b;
+  }
+}
+
+@layer components {
+  .nv-card {
+    @apply bg-nv-card border border-nv-border rounded-xl;
+  }
+
+  .nv-card-glow {
+    @apply nv-card;
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .nv-card-glow:hover {
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.15),
+                0 4px 24px rgba(0, 255, 136, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 255, 136, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .nv-btn {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200;
+  }
+
+  .nv-btn-primary {
+    @apply nv-btn bg-nv-accent text-nv-bg hover:opacity-90;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  }
+
+  .nv-btn-secondary {
+    @apply nv-btn bg-nv-border text-nv-text hover:bg-gray-600;
+  }
+
+  .nv-btn-danger {
+    @apply nv-btn bg-nv-red/20 text-nv-red border border-nv-red/30 hover:bg-nv-red/30;
+  }
+
+  .nv-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .nv-badge-critical {
+    @apply nv-badge bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .nv-badge-high {
+    @apply nv-badge bg-orange-500/20 text-orange-400 border border-orange-500/30;
+  }
+
+  .nv-badge-medium {
+    @apply nv-badge bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+  }
+
+  .nv-badge-low {
+    @apply nv-badge bg-blue-500/20 text-blue-400 border border-blue-500/30;
+  }
+
+  .nv-input {
+    @apply w-full bg-nv-surface border border-nv-border rounded-lg px-3 py-2
+           text-nv-text text-sm placeholder-nv-muted outline-none
+           focus:border-nv-accent/50 focus:ring-1 focus:ring-nv-accent/20
+           transition-all duration-200;
+  }
+
+  .status-online  { @apply text-nv-accent; }
+  .status-offline { @apply text-nv-muted; }
+  .status-error   { @apply text-nv-red; }
+
+  .glow-accent { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+  .glow-cyan   { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+  .glow-red    { box-shadow: 0 0 20px rgba(255, 51, 102, 0.4); }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,136,0.4), transparent);
+    animation: scan 4s linear infinite;
+  }
+
+  .alert-pulse {
+    animation: alert-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes alert-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+}
+
+/* Recharts overrides for dark theme */
+.recharts-cartesian-axis-tick-value { fill: #6b7280 !important; font-size: 11px; }
+.recharts-tooltip-wrapper { outline: none !important; }
